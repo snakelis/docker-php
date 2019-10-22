@@ -5,7 +5,7 @@ nginx:
   links:
     - "php"
   volumes:
-    - D:/web:/web
+    - ~/web:/web
 
 php:
   build: ./php
@@ -16,7 +16,7 @@ php:
     - "redis"
     - "memcached"
   volumes:
-    - D:/web:/web
+    - ~/web:/web
   environment:
     MYSQL_PORT: 3306
     REDIS_PORT: 6379
@@ -26,7 +26,7 @@ mysql:
   ports:
     - "3306:3306"
   volumes:
-    - D:/web/data/mysql:/var/lib/mysql
+    - ~/web/data/mysql:/var/lib/mysql
   environment:
     MYSQL_ROOT_PASSWORD: mzg168.2016
 

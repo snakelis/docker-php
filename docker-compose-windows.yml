@@ -20,7 +20,7 @@ php:
   environment:
     MYSQL_PORT: 3306
     REDIS_PORT: 6379
-    MEMCACHED_PORT: 11211
+    MEMCACHED_PORT: 11211 
 mysql:
   build: ./mysql
   ports:
