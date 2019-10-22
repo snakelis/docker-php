@@ -33,6 +33,10 @@ RUN pecl install -o -f redis \
 &&  rm -rf /tmp/pear \
 &&  docker-php-ext-enable redis
 
+#安装swoole扩展
+RUN pecl install -o -f swoole \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable swoole
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
