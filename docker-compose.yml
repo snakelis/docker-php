@@ -8,19 +8,19 @@ nginx:
     - D:/web:/web
 
 php:
-  build: ./php
+  build: ./php71
   ports:
     - "8000:8000"
   links:
     - "mysql"
     - "redis"
-    - "memcached"
+  #    - "memcached"
   volumes:
     - D:/web:/web
   environment:
     MYSQL_PORT: 3306
     REDIS_PORT: 6379
-    MEMCACHED_PORT: 11211
+#    MEMCACHED_PORT: 11211
 mysql:
   build: ./mysql
   ports:
@@ -32,10 +32,11 @@ mysql:
 
 redis:
   build: ./redis
+  command: redis-server --requirepass 123456
   ports:
     - "6379:6379"
-
-memcached:
-  build: ./memcached
-  ports:
-    - "11211:11211" 
+#
+#memcached:
+#  build: ./memcached
+#  ports:
+#    - "11211:11211"
