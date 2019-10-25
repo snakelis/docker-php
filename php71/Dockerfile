@@ -1,6 +1,7 @@
 FROM php:7.1-fpm
 
 # Install env
+
 ADD sources.list /etc/apt/sources.list
 RUN echo "nameserver 223.5.5.5" > /etc/resolv.conf
 RUN apt-get update && apt-get install -y \
@@ -12,8 +13,15 @@ RUN apt-get update && apt-get install -y \
     libz-dev \
     libmemcached-dev \
     libxml2-dev \
+    #添加ssh连接配置
+    initscripts \
+    net-tools \
+    openssh-server \
+    vim \
     && rm -r /var/lib/apt/lists/*
-	
+
+#设置root账号允许ssh连接配置
+#cp -r /etc/ssh/sshd_config.bak /etc/ssh/sshd_config
 # Install PHP extensions
 # COPY xdebug.tgz /home/xdebug.tgz
 
@@ -50,6 +58,11 @@ WORKDIR /web
 
 # Write Permission
 RUN usermod -u 1000 www-data
+
+#允许ssh连接配置
+ADD sshd_config.bak /etc/ssh/sshd_config
+RUN echo "root:root" | chpasswd
+RUN /etc/init.d/ssh start
 
 # php-fpm:8000 xdebug:9000
 EXPOSE 8001 

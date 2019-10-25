@@ -11,6 +11,7 @@ php:
   build: ./php71
   ports:
     - "8000:8000"
+    - "5001:22"
   links:
     - "mysql"
     - "redis"
