@@ -1,41 +1,59 @@
-nginx:
-  build: ./nginx
-  ports:
-    - "80:80"
-  links:
-    - "php"
-  volumes:
-    - D:/web:/web
+version: "3.7"
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    links:
+      - "php"
+    volumes:
+      - D:/web:/web
+    networks:
+      - net1
 
-php:
-  build: ./php71
-  ports:
-    - "8000:8000"
-    - "5001:22"
-  links:
-    - "mysql"
-    - "redis"
-  #    - "memcached"
-  volumes:
-    - D:/web:/web
-  environment:
-    MYSQL_PORT: 3306
-    REDIS_PORT: 6379
-#    MEMCACHED_PORT: 11211
-mysql:
-  build: ./mysql
-  ports:
-    - "3306:3306"
-  volumes:
-    - D:/web/data/mysql:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: mzg168.2016
+  php:
+    build: ./php71
+    ports:
+      - "5002:8000"
+      - "5001:22"
+    links:
+      - "mysql"
+      - "redis"
+    #    - "memcached"
+    volumes:
+      - D:/web:/web
+    environment:
+      MYSQL_PORT: 3306
+      REDIS_PORT: 6379
+    networks:
+      - net1
+    extra_hosts:
+      - "base.local:172.25.0.5"
 
-redis:
-  build: ./redis
-  command: redis-server --requirepass 123456
-  ports:
-    - "6379:6379"
+  mysql:
+    build: ./mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - D:/web/data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      - net1
+
+
+  redis:
+    build: ./redis
+    command: redis-server --requirepass 123456
+    ports:
+      - "6379:6379"
+    networks:
+      - net1
+networks:
+  net1:
+
+
+
 #
 #memcached:
 #  build: ./memcached
