@@ -1,7 +1,7 @@
 # Docker LNMP  环境一键部署
 ## 安装
  ```
-git clone https://github.com/Hello-Nemo/docker-php.git
+git clone https://github.com/snakelis/docker-php.git
 cd docker-php 
 docker-compose build // 等待编译
 ```
