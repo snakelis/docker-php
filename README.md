@@ -7,10 +7,16 @@ docker-compose build // 等待编译
 ```
 ## 创建挂载项目
 ```
+
+//修改docker-compose.yml 文件地址
+全局替换 D: 替换成~
+
 //创建测试项目目录
 mkdir -p ~/web/htdocs/demo
+
 // 创建数据目录
 mkdir -p ~/web/data
+
 // 创建日志目录
 mkdir -p ~/web/log/nginx
 
