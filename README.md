@@ -6,28 +6,18 @@ cd docker-php
 docker-compose build // 等待编译
 ```
 ## 创建挂载项目
-```
-
-//修改docker-compose.yml 文件地址
-全局替换 D: 替换成~
-
-//创建测试项目目录
-mkdir -p ~/web/htdocs/demo
-
-// 创建数据目录
-mkdir -p ~/web/data
-
-// 创建日志目录
-mkdir -p ~/web/log/nginx
-
-// 创建测试文件
-tee ~/web/htdocs/demo/index.php <<<- 'EOF'
-<?php
-     phpinfo();
-?>
-EOF
-
-```
+    //创建测试项目 
+     D:/web/htdocs/demo
+     
+     //创建测试文件
+     D:/web/htdocs/demo/index.php
+     
+     //创建数据库目录
+     D:/web/data
+     
+     //创建日志文件
+     D:/web/log/nginx
+     
 ## 启动服务
 ```
 // 启动服务 nginx mysql redis memcache
@@ -35,7 +25,7 @@ docker-compose up -d
 ```
 ## 测试
 ```
-curl localhost //可以看到 phpinfo 信息
+访问 localhost //可以看到 phpinfo 信息
 ```
 
 
