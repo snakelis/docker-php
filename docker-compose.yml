@@ -7,7 +7,7 @@ services:
     links:
       - "php"
     volumes:
-      - D:/web:/web
+      - /web:/web
     networks:
       lnmp:
         ipv4_address: 10.5.0.2
@@ -22,7 +22,7 @@ services:
       - "redis"
     #    - "memcached"
     volumes:
-      - D:/web:/web
+      - /web:/web
     environment:
       MYSQL_PORT: 3306
       REDIS_PORT: 6379
@@ -37,7 +37,7 @@ services:
     ports:
       - "5306:3306"
     volumes:
-      - D:/web/data/mysql:/var/lib/mysql
+      - /web/data/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
     networks:

@@ -1,27 +1,30 @@
 # Docker LNMP  环境一键部署
+
 ## 安装
  ```
 git clone https://github.com/snakelis/docker-php.git
-cd docker-php 
-docker-compose build // 等待编译
+cd docker-php
 ```
+
+## 根据服务器切换分支 windows:master 分支,linux ：linux 分支
+ 
+    // 等待编译    
+    docker-compose build 
+
 ## 创建挂载项目
 ```
 
-//修改docker-compose.yml 文件地址
-全局替换 D: 替换成~
-
 //创建测试项目目录
-mkdir -p ~/web/htdocs/demo
+mkdir -p /web/htdocs/demo
 
 // 创建数据目录
-mkdir -p ~/web/data
+mkdir -p /web/data
 
 // 创建日志目录
-mkdir -p ~/web/log/nginx
+mkdir -p /web/log/nginx
 
 // 创建测试文件
-tee ~/web/htdocs/demo/index.php <<<- 'EOF'
+tee /web/htdocs/demo/index.php <<<- 'EOF'
 <?php
      phpinfo();
 ?>
