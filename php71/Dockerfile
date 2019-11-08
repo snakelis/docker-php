@@ -65,5 +65,5 @@ RUN echo "root:root" | chpasswd
 RUN /etc/init.d/ssh start
 
 # php-fpm:8000 xdebug:9000
-EXPOSE 8001 
+EXPOSE 9000
 VOLUME ["/web"]
