@@ -11,7 +11,8 @@ services:
     networks:
       lnmp:
         ipv4_address: 10.5.0.2
-
+    cap_add:
+      - SYS_PTRACE
   php:
     build: ./php71
     ports:
@@ -31,6 +32,8 @@ services:
         ipv4_address: 10.5.0.3
     extra_hosts:
       - "base.local:10.5.0.2"
+    cap_add:
+      - SYS_PTRACE
 
   mysql:
     build: ./mysql
