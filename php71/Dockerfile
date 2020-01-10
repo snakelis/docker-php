@@ -34,17 +34,37 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
         && docker-php-ext-install mcrypt \
         && docker-php-ext-install mysqli \
         && docker-php-ext-install pdo_mysql \
-        && docker-php-ext-install soap 
+        && docker-php-ext-install soap
 
 #安装redis扩展
 RUN pecl install -o -f redis \
 &&  rm -rf /tmp/pear \
 &&  docker-php-ext-enable redis
 
+
+
 #安装swoole扩展
-RUN pecl install -o -f swoole \
-&&  rm -rf /tmp/pear \
+# RUN pecl install -o -f swoole \
+# &&  rm -rf /tmp/pear \
+# &&  docker-php-ext-enable swoole
+
+# 源码安装swoole
+RUN git clone https://github.com/swoole/swoole-src \
+&&     cd swoole-src  \
+&&     phpize \
+&&     ./configure \
+&&     make -j 4 \
+&&     make install \
 &&  docker-php-ext-enable swoole
+
+# 源码安装swoole_async
+RUN git clone https://github.com/swoole/ext-async \
+&&     cd ext-async  \
+&&     phpize \
+&&     ./configure \
+&&     make -j 4 \
+&&     make install \
+&&  docker-php-ext-enable swoole_async
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
