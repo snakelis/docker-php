@@ -42,30 +42,6 @@ RUN pecl install -o -f redis \
 &&  docker-php-ext-enable redis
 
 
-
-#安装swoole扩展
-# RUN pecl install -o -f swoole \
-# &&  rm -rf /tmp/pear \
-# &&  docker-php-ext-enable swoole
-
-# 源码安装swoole
-RUN git clone https://github.com/swoole/swoole-src \
-&&     cd swoole-src  \
-&&     phpize \
-&&     ./configure \
-&&     make -j 4 \
-&&     make install \
-&&  docker-php-ext-enable swoole
-
-# 源码安装swoole_async
-RUN git clone https://github.com/swoole/ext-async \
-&&     cd ext-async  \
-&&     phpize \
-&&     ./configure \
-&&     make -j 4 \
-&&     make install \
-&&  docker-php-ext-enable swoole_async
-
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
 ADD php-fpm.conf /usr/local/etc/php-fpm.conf

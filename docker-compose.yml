@@ -7,7 +7,7 @@ services:
     links:
       - "php"
     volumes:
-      - D:/web:/web
+      - ../:/web
     networks:
       lnmp:
         ipv4_address: 10.5.0.2
@@ -17,25 +17,17 @@ services:
     build: ./php71
     ports:
       - "9001:9000"
-      - "5001:22"
-      - "9501:9501"
-      - "9502:9502"
-      - "9503:9503"
-      - "9504:9504"
     links:
       - "mysql"
       - "redis"
-    #    - "memcached"
     volumes:
-      - D:/web:/web
+      - ../:/web
     environment:
       MYSQL_PORT: 3306
       REDIS_PORT: 6379
     networks:
       lnmp:
         ipv4_address: 10.5.0.3
-    extra_hosts:
-      - "base.local:10.5.0.2"
     cap_add:
       - SYS_PTRACE
 
@@ -68,10 +60,3 @@ networks:
     ipam:
       config:
           - subnet: 10.5.0.0/16
-#            gateway: 10.5.0.1
-
-#
-#memcached:
-#  build: ./memcached
-#  ports:
-#    - "11211:11211"
