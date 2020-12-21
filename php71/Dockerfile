@@ -69,9 +69,11 @@ RUN git clone https://github.com/swoole/ext-async \
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
 ADD php-fpm.conf /usr/local/etc/php-fpm.conf
+ADD cacert.pem /usr/local/etc/php/cacert.pem
 
 #Composer
 ADD composer.phar /usr/local/bin/composer
+
 RUN chmod 755 /usr/local/bin/composer
 
 WORKDIR /web
